@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "dotnet_functionapp_servicebus": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7050",
+      "launchBrowser": false
+    }
+  }
+}

@@ -4,6 +4,6 @@ metadata:
 services:
   app:
     project: src/functionapp
-    dist: build
     language: csharp
     host: function
+    resourceName: app-queCode-7biui4jdhnbjk

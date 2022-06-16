@@ -9,13 +9,8 @@
     "features": {
         "github-cli": "2",
         "azure-cli": "2.36",
-        "python": "os-provided",
         "dotnet": "6.0",
-        "docker-from-docker": "20.10",
-        "node": {
-            "version": "16",
-            "nodeGypDependencies": false
-        }
+        "docker-from-docker": "20.10"
     },
     "extensions": [
         "/extensions/azure-dev.vsix",

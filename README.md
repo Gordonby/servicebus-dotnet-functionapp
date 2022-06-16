@@ -2,7 +2,7 @@
 
 [![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Gordonby/azd-template-servicebus-dotnet-functionapp)
 
-Two Azure Function applications that include everything you need to build, deploy, and monitor an Azure solution that both adds messages to and reacts to messages on an Azure Service Bus queue using the native bindings. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
+This template includes everything you need to build, deploy, and monitor an Azure solution that both adds messages to and reacts to messages on an Azure Service Bus queue using Azure Function Apps and the native bindings for Service Bus. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
 
 Let's jump in and get the apps up and running in Azure. When you are finished, you will have a fully functional Service Bus queue with accompanying Function apps deployed on Azure. In later steps, you'll see how to setup a pipeline and monitor the application.
 

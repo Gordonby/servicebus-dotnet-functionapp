@@ -60,7 +60,7 @@ module functionApp 'foundationalModules/functionapp.bicep' = {
 }
 
 @description('The raw function app url')
-output ApplicationUrl string = functionApp.outputs.appUrl
+output ApplicationUrl string = 'https://${functionApp.outputs.appUrl}' 
 
 // -------------------Service Bus---------------------
 @description('The name of the ServiceBus Queue to create in the ServiceBus namespace')

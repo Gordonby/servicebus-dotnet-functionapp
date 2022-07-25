@@ -31,9 +31,9 @@ module serviceBusApp 'servicebus-FunctionApp.bicep' = {
     appName: 'queueCode'
     ServiceBusQueueName: 'theQueue'
     
-    //Nifty azd tag to make deploying to the right app easier
+    //Nifty azd tag to make deploying to the right app easier (uses service name from azure.yaml)
     AppTags: {
-      'azd-service-name': 'functionapp'
+      'azd-service-name': 'app'
     }
   }
 }

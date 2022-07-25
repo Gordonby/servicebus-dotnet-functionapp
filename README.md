@@ -38,7 +38,7 @@ graph TB
     sb(Queue)
     timer-->|Every minute, write message|sb
     sb-->|On message add|sbTrigger(Queue Trigger)
-    sbTrigger-->ai
+
     end
 
     subgraph Logging
@@ -46,6 +46,7 @@ graph TB
     la(Log Analytics workspace)
     ai-->la   
     timer-->ai
+        sbTrigger-->ai
     end
 
 ```

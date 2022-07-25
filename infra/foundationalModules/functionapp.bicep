@@ -16,6 +16,7 @@ param RuntimeVersion string = '~4'
 
 param AppInsightsName string
 param additionalAppSettings array = []
+param tags object = {}
 
 @description('An optional, additional User Assigned Identity name that can be leveraged for other auth scenarios')
 param fnAppIdentityName string = ''
@@ -81,6 +82,7 @@ resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
   name: webAppName
   location: location
   kind: 'functionapp'
+  tags: tags
   identity: !empty(fnAppIdentityName) ? identityUserAndSystemAssigned : identityJustSystemAssigned
   properties: {
     httpsOnly: true

@@ -27,6 +27,8 @@ param AppGitRepoProdBranch string = 'main'
 @description('The functionApp module supports slots, we bind a slot to a specific GitHub branch. This is for the staging slot.')
 param AppGitRepoStagingBranch string = ''
 
+param AppTags object = {}
+
 @description('This array will be appended to the AppSettings in the functionApp module.')
 var ServiceBusAppSettings = [
   {
@@ -46,6 +48,7 @@ module functionApp 'foundationalModules/functionapp.bicep' = {
     location: location
     appName: appName
     webAppName: webAppName
+    tags: AppTags
     AppInsightsName: appInsights.outputs.name
     repoUrl: AppGitRepoUrl
     repoPath: AppGitRepoPath

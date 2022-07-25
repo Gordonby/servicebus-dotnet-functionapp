@@ -24,6 +24,32 @@ The following prerequisites are required to use this application.  Please ensure
 - Functions Runtime
 - [Git (2.36.1+)](https://git-scm.com/)
 
+### Architecture
+
+```mermaid
+graph TB
+    subgraph Function Apps
+    timer(Timer Trigger)
+    sbTrigger
+    
+    end
+
+    subgraph ServiceBus
+    sb(Queue)
+    timer-->|Every minute, write message|sb
+    sb-->|On message add|sbTrigger(Queue Trigger)
+    sbTrigger-->ai
+    end
+
+    subgraph Logging
+    ai(App Insights)
+    la(Log Analytics workspace)
+    ai-->la   
+    timer-->ai
+    end
+
+```
+
 ### Quickstart
 
 The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources.

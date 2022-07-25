@@ -31,8 +31,8 @@ The fastest way for you to get this application up and running on Azure is to us
 1. Clone this sample
 
 ```bash
-git clone https://github.com/Gordonby/azd-template-servicebus-dotnet-functionapp.git
-cd azd-template-servicebus-dotnet-functionapp
+git clone https://github.com/Gordonby/servicebus-dotnet-functionapp.git
+cd servicebus-dotnet-functionapp
 ```
 
 2. Run the following command to initialize the project, provision Azure resources, and deploy the application code.

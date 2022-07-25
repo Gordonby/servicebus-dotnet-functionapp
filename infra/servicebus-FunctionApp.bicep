@@ -12,7 +12,7 @@ param resNameSeed string
 param location string = resourceGroup().location
 
 @description('Needs to be unique as ends up as a public endpoint')
-var webAppName = 'app-${appName}-${uniqueString(resourceGroup().id, appName)}'
+param webAppName string = 'app-${appName}-${uniqueString(resourceGroup().id, appName)}'
 
 // --------------------Function App-------------------
 @description('The full publicly accessible external Git(Hub) repo url')

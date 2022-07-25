@@ -26,12 +26,13 @@ The following prerequisites are required to use this application.  Please ensure
 
 ### Quickstart
 
-The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources - including access policies and roles for your account and service-to-service communication with Managed Identities. 
+The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources.
 
 1. Clone this sample
 
 ```bash
-
+git clone https://github.com/Gordonby/azd-template-servicebus-dotnet-functionapp.git
+cd azd-template-servicebus-dotnet-functionapp
 ```
 
 2. Run the following command to initialize the project, provision Azure resources, and deploy the application code.

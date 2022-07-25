@@ -6,4 +6,3 @@ services:
     project: src/functionapp
     language: csharp
     host: function
-    resourceName: app-queCode-7biui4jdhnbjk

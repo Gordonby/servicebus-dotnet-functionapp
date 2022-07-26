@@ -55,17 +55,10 @@ graph TB
 
 The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources.
 
-1. Clone this sample
+Run the following command to initialize the project, provision Azure resources, and deploy the application code.
 
 ```bash
-git clone https://github.com/Gordonby/servicebus-dotnet-functionapp.git
-cd servicebus-dotnet-functionapp
-```
-
-2. Run the following command to initialize the project, provision Azure resources, and deploy the application code.
-
-```bash
-azd up
+azd up -t Gordonby/servicebus-dotnet-functionapp
 ```
 
 You will be prompted for the following information:

@@ -8,19 +8,19 @@
     },
     "features": {
         "github-cli": "2",
-        "azure-cli": "2.36",
+        "azure-cli": "2.38",
         "dotnet": "6.0",
         "docker-from-docker": "20.10"
     },
     "extensions": [
-        "/extensions/azure-dev.vsix",
-        "dbaeumer.vscode-eslint",
+        "ms-azuretools.azure-dev",
         "ms-azuretools.vscode-bicep",
         "ms-azuretools.vscode-docker",
         "ms-azuretools.vscode-azurefunctions",
         "ms-dotnettools.csharp",
+        "ms-dotnettools.vscode-dotnet-runtime",
         "esbenp.prettier-vscode",
-        "ms-dotnettools.vscode-dotnet-runtime"
+        "dbaeumer.vscode-eslint"
     ],
     "forwardPorts": [
         3000,

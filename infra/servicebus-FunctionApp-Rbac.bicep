@@ -13,6 +13,7 @@ resource rbacReceiveMessage 'Microsoft.Authorization/roleAssignments@2020-10-01-
   properties: {
     principalId: PrincipalId
     roleDefinitionId: serviceBusDataReceiver
+    principalType: 'ServicePrincipal'
   }
 }
 
@@ -23,5 +24,6 @@ resource rbacSendMessage 'Microsoft.Authorization/roleAssignments@2020-10-01-pre
   properties: {
     principalId: PrincipalId
     roleDefinitionId: serviceBusDataSender
+    principalType: 'ServicePrincipal'
   }
 }

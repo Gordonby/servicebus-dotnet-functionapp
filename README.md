@@ -55,14 +55,24 @@ graph TB
 
 The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources.
 
-Run the following command to initialize the project, provision Azure resources, and deploy the application code.
+1. Run the following command to initialize the project.
 
 ```bash
-azd up -t Gordonby/servicebus-dotnet-functionapp
+azd init --template Gordonby/servicebus-dotnet-functionapp
 ```
 
-You will be prompted for the following information:
+This command will clone the code to your current folder and prompt you for the following information:
 
 - `Environment Name`: This will be used as a prefix for all your Azure resources, make sure it is globally unique and under 15 characters.
+
+2. Run the following command to build a deployable copy of your application, provision the template's infrastructure to Azure and also deploy the applciation code to those newly provisioned resources.
+
+```bash
+azd up
+```
+
+This command will prompt you for the following information:
 - `Azure Location`: The Azure location where your resources will be deployed.
 - `Azure Subscription`: The Azure Subscription where your resources will be deployed.
+
+> NOTE: This may take a while to complete as it executes three commands: `azd package` (builds a deployable copy of your application), `azd provision` (provisions Azure resources), and `azd deploy` (deploys application code). You will see a progress indicator as it packages, provisions and deploys your application.

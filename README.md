@@ -20,6 +20,7 @@ The following prerequisites are required to use this application.  Please ensure
     curl -fsSL https://aka.ms/install-azd.sh | bash 
     ```
 - [Azure CLI (2.37.0+)](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [DotNet 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - VSCode
 - Functions Runtime
 - [Git (2.36.1+)](https://git-scm.com/)
@@ -55,14 +56,21 @@ graph TB
 
 The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources.
 
-Run the following command to initialize the project, provision Azure resources, and deploy the application code.
+Run the following commands to initialize the project, provision Azure resources, and deploy the application code.
 
 ```bash
-azd up -t Gordonby/servicebus-dotnet-functionapp
+#download the repo assets from GitHub and initialize azd locally
+azd init -t Gordonby/servicebus-dotnet-functionapp
+
+#login to azure
+azd auth login
+
+#create the app in azure
+azd up
 ```
 
 You will be prompted for the following information:
 
 - `Environment Name`: This will be used as a prefix for all your Azure resources, make sure it is globally unique and under 15 characters.
-- `Azure Location`: The Azure location where your resources will be deployed.
 - `Azure Subscription`: The Azure Subscription where your resources will be deployed.
+- `Azure Location`: The Azure location where your resources will be deployed

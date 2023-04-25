@@ -24,8 +24,8 @@ param AppGitRepoPath string = ''
 @description('The functionApp module supports slots, we bind a slot to a specific GitHub branch. This is for the production slot.')
 param AppGitRepoProdBranch string = 'main'
 
-@description('The functionApp module supports slots, we bind a slot to a specific GitHub branch. This is for the staging slot.')
-param AppGitRepoStagingBranch string = ''
+//@description('The functionApp module supports slots, we bind a slot to a specific GitHub branch. This is for the staging slot.')
+//param AppGitRepoStagingBranch string = ''
 
 param AppTags object = {}
 
@@ -53,8 +53,8 @@ module functionApp 'foundationalModules/functionapp.bicep' = {
     repoUrl: AppGitRepoUrl
     repoPath: AppGitRepoPath
     repoBranchProduction: AppGitRepoProdBranch
-    repoBranchStaging: AppGitRepoStagingBranch
-    deploymentSlotName: ''
+    //repoBranchStaging: AppGitRepoStagingBranch
+    //deploymentSlotName: ''
     additionalAppSettings: ServiceBusAppSettings
   }
 }

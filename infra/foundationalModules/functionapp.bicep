@@ -25,29 +25,28 @@ resource AppInsights 'Microsoft.Insights/components@2020-02-02' existing = {
   name: AppInsightsName
 }
 
-var storageAccountRawName = toLower('stor${appName}${uniqueString(resourceGroup().id, appName)}')
-var storageAccountName = length(storageAccountRawName) > 24 ? substring(storageAccountRawName,0,23) : storageAccountRawName
+var storageAccountName = take(toLower('stor${appName}${uniqueString(resourceGroup().id, appName)}'),24)
 
 var coreAppSettings = [
   {
-    'name': 'APPINSIGHTS_INSTRUMENTATIONKEY'
-    'value': AppInsights.properties.InstrumentationKey
+    name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
+    value: AppInsights.properties.InstrumentationKey
   }
   {
     name: 'AzureWebJobsStorage'
-    value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccount.id, storageAccount.apiVersion).keys[0].value}'
+    value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
   }
   {
-    'name': 'FUNCTIONS_EXTENSION_VERSION'
-    'value': RuntimeVersion
+    name: 'FUNCTIONS_EXTENSION_VERSION'
+    value: RuntimeVersion
   }
   {
-    'name': 'FUNCTIONS_WORKER_RUNTIME'
-    'value': WorkerRuntime
+    name: 'FUNCTIONS_WORKER_RUNTIME'
+    value: WorkerRuntime
   }
   {
     name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'
-    value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccount.id, storageAccount.apiVersion).keys[0].value}'
+    value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
   }
   {
     name: 'PROJECT'
@@ -78,7 +77,7 @@ var identityUserAndSystemAssigned = {
   }
 }
 
-resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
+resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
   name: webAppName
   location: location
   kind: 'functionapp'
@@ -96,8 +95,8 @@ output appUrl string = functionApp.properties.defaultHostName
 output appName string = functionApp.name
 output systemAssignedIdentityPrincipalId string = functionApp.identity.principalId
 
-param deploymentSlotName string = 'staging'
-param repoBranchStaging string = ''
+//param deploymentSlotName string = 'staging'
+//param repoBranchStaging string = ''
 // resource slot 'Microsoft.Web/sites/slots@2021-02-01' = if (!empty(deploymentSlotName)) {
 //   name: deploymentSlotName
 //   parent: functionApp
@@ -118,11 +117,11 @@ param repoBranchStaging string = ''
 //   }
 // }
 
-resource fnAppUai 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = if (!empty(fnAppIdentityName)) {
+resource fnAppUai 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' existing = if (!empty(fnAppIdentityName)) {
   name: fnAppIdentityName
 }
 
-resource webAppConfig 'Microsoft.Web/sites/config@2019-08-01' = if (!empty(repoUrl)) {
+resource webAppConfig 'Microsoft.Web/sites/config@2022-03-01' = if (!empty(repoUrl)) {
   parent: functionApp
   name: 'web'
   properties: {
@@ -130,7 +129,7 @@ resource webAppConfig 'Microsoft.Web/sites/config@2019-08-01' = if (!empty(repoU
   }
 }
 
-resource webAppLogging 'Microsoft.Web/sites/config@2021-02-01' = {
+resource webAppLogging 'Microsoft.Web/sites/config@2022-03-01' = {
   parent: functionApp
   name: 'logs'
   properties: {
@@ -152,7 +151,7 @@ resource webAppLogging 'Microsoft.Web/sites/config@2021-02-01' = {
 param repoUrl string = ''
 param repoPath string = ''
 param repoBranchProduction string = 'main'
-resource codeDeploy 'Microsoft.Web/sites/sourcecontrols@2021-01-15' = if (!empty(repoUrl) && !empty(repoBranchProduction)) {
+resource codeDeploy 'Microsoft.Web/sites/sourcecontrols@2022-03-01' = if (!empty(repoUrl) && !empty(repoBranchProduction)) {
   parent: functionApp
   name: 'web'
   properties: {
@@ -162,7 +161,7 @@ resource codeDeploy 'Microsoft.Web/sites/sourcecontrols@2021-01-15' = if (!empty
   }
 }
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: storageAccountName
   location: location
   kind: 'StorageV2'
@@ -171,7 +170,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   }
 }
 
-resource hostingPlan 'Microsoft.Web/serverfarms@2021-01-15' = {
+resource hostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: hostingPlanName
   location: location
   sku: {

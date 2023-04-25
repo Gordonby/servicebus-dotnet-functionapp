@@ -11,7 +11,7 @@ param location string
 
 //var resourceToken = '${name}-${toLower(uniqueString(subscription().id, name, location))}'
 
-resource resourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' = {
+resource resourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: '${name}-rg'
   location: location
   tags: {

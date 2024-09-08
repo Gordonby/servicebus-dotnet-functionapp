@@ -77,7 +77,7 @@ var identityUserAndSystemAssigned = {
   }
 }
 
-resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
+resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
   name: webAppName
   location: location
   kind: 'functionapp'
@@ -121,7 +121,7 @@ resource fnAppUai 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' 
   name: fnAppIdentityName
 }
 
-resource webAppConfig 'Microsoft.Web/sites/config@2022-03-01' = if (!empty(repoUrl)) {
+resource webAppConfig 'Microsoft.Web/sites/config@2023-12-01' = if (!empty(repoUrl)) {
   parent: functionApp
   name: 'web'
   properties: {
@@ -129,7 +129,7 @@ resource webAppConfig 'Microsoft.Web/sites/config@2022-03-01' = if (!empty(repoU
   }
 }
 
-resource webAppLogging 'Microsoft.Web/sites/config@2022-03-01' = {
+resource webAppLogging 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: functionApp
   name: 'logs'
   properties: {
@@ -151,7 +151,7 @@ resource webAppLogging 'Microsoft.Web/sites/config@2022-03-01' = {
 param repoUrl string = ''
 param repoPath string = ''
 param repoBranchProduction string = 'main'
-resource codeDeploy 'Microsoft.Web/sites/sourcecontrols@2022-03-01' = if (!empty(repoUrl) && !empty(repoBranchProduction)) {
+resource codeDeploy 'Microsoft.Web/sites/sourcecontrols@2023-12-01' = if (!empty(repoUrl) && !empty(repoBranchProduction)) {
   parent: functionApp
   name: 'web'
   properties: {
@@ -161,7 +161,7 @@ resource codeDeploy 'Microsoft.Web/sites/sourcecontrols@2022-03-01' = if (!empty
   }
 }
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   name: storageAccountName
   location: location
   kind: 'StorageV2'
@@ -170,7 +170,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   }
 }
 
-resource hostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
+resource hostingPlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: hostingPlanName
   location: location
   sku: {

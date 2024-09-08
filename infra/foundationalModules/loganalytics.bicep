@@ -8,7 +8,7 @@ param location string = resourceGroup().location
 
 var log_name = 'log-${resNameSeed}'
 
-resource log 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
+resource log 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   name: log_name
   location: location
   properties: {
